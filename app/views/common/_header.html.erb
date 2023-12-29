@@ -9,4 +9,8 @@
       </li>
     </ul>
   </nav>
+  <div>
+    <%= link_to 'dark', set_theme_path(theme: 'dark'), class: cookies[:theme] == 'dark' ? 'link link--active' : '' %>
+    <%= link_to 'light', set_theme_path(theme: 'light'), class: cookies[:theme] == 'light' ? 'link link--active' : '' %>
+  </div>
 </header>

@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-grey container">
+  <body class="bg-grey container theme--<%= cookies[:theme].present? ? cookies[:theme] : 'light' %>">
     <%= render 'common/header' %>
     <main>
       <%= yield %>
