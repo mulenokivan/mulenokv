@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: elements
+#
+#  id           :bigint           not null, primary key
+#  element_type :string
+#  content      :text
+#  post_id      :bigint           not null
+#  position     :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+one:
+  element_type: MyString
+  content: MyText
+  post: one
+  position: 1
+
+two:
+  element_type: MyString
+  content: MyText
+  post: two
+  position: 1

@@ -1,0 +1,12 @@
+<header class="header">
+  <nav class="nav">
+    <ul class="list list--row">
+      <li class="list__item">
+        <%= link_to 'Posts', posts_path, class: current_page?(posts_path) ? 'link link--active' : '' %>
+      </li>
+      <li class="list__item">
+        <%= link_to 'Home', home_path, class: current_page?(home_path) ? 'link link--active' : '' %>
+      </li>
+    </ul>
+  </nav>
+</header>
