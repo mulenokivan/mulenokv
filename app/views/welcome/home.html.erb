@@ -1,1 +1,9 @@
-<h1>Муленок Иван Олегович, <%= ((Time.zone.now - '27.02.2002'.to_date.to_time) / 1.year.seconds) %> год.</h1>
+<%= turbo_frame_tag(:birthday, style: "display:none;") do %>
+  <h1>Муленок Иван Олегович, <%= ((Time.zone.now - '2002-02-27 08:30:00 +0700'.to_time) / 1.year.seconds) %> год.</h1>
+<% end %>
+
+<%= turbo_frame_tag :birthday, src: request.url,
+  data: {
+    controller: "birthday"
+  }
+%>
