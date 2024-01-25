@@ -6,11 +6,13 @@ default: &default
 development:
   <<: *default
   database: mulenokv_development
+  template: template0
 test:
   <<: *default
   database: mulenokv_test
+  template: template0
 production:
   <<: *default
+  template: template0
   database: mulenokv
   username: deploy
-  password: 481516
