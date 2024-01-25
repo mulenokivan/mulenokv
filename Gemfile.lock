@@ -79,9 +79,6 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.5.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    annotate (3.2.0)
-      activerecord (>= 3.2, < 8.0)
-      rake (>= 10.4, < 14.0)
     base64 (0.2.0)
     bigdecimal (3.1.5)
     bindex (0.8.1)
@@ -306,7 +303,6 @@ PLATFORMS
   x86_64-linux-android
 
 DEPENDENCIES
-  annotate
   bootsnap
   capistrano (~> 3.11)
   capistrano-passenger (~> 0.2.0)
