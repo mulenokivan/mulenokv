@@ -2,17 +2,15 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  template: template0
 
 development:
   <<: *default
   database: mulenokv_development
-  template: template0
 test:
   <<: *default
   database: mulenokv_test
-  template: template0
 production:
   <<: *default
-  template: template0
   database: mulenokv
   username: deploy
