@@ -1,0 +1,135 @@
+<div style="text-align:center;">
+  <canvas id="gameCanvas" width="200" height="200"></canvas>
+</div>
+
+<script>
+function PongGame(canvas) {
+  const FRAMES_PER_SECOND = 60;
+  const FRAME_RATE_ADJUST = 30 / FRAMES_PER_SECOND;
+  this.canvas = canvas;
+  var canvasContext = canvas.getContext('2d');
+  var ballSpeedX = 10 * FRAME_RATE_ADJUST, ballSpeedY = 20 * FRAME_RATE_ADJUST;
+  let left_ball = buildBall('left')
+  let right_ball = buildBall('right')
+  var bricks = [];
+  var pieces = 20
+  for (let i = 0; i < pieces/2; i++) {
+    bricks[i] = [];
+    for (let j = 0; j < pieces; j++) {
+      bricks[i][j] = { x: 0, y: 0, color: 'black' };
+    }
+  }
+  for (let i = pieces/2; i < pieces; i++) {
+    bricks[i] = [];
+    for (let j = 0; j < pieces; j++) {
+      bricks[i][j] = { x: 0, y: 0, color: 'coral' };
+    }
+  }
+
+  setInterval(function () {
+    moveBall(left_ball);
+    moveBall(right_ball);
+    drawEverything();
+  }, 1000 / FRAMES_PER_SECOND);
+
+  function buildBall(position) {
+    var ballSpeedX = 4 * FRAME_RATE_ADJUST, ballSpeedY = 2 * FRAME_RATE_ADJUST;
+    var radius = 4
+    if (position == 'left') {
+      var ballX = 0 , ballY = 105;
+      var color = 'coral'
+    }
+    if (position == 'right') {
+      var ballX = 200 , ballY = 140;
+      var color = 'black'
+    }
+    return {
+      position,
+      radius,
+      ballX,
+      ballY,
+      ballSpeedX,
+      ballSpeedY,
+      color
+    }
+  }
+
+  function collisionDetection(ball) {
+    for (var c = 0; c < pieces; c++) {
+      for (var r = 0; r < pieces; r++) {
+        var brick = bricks[c][r];
+        if (
+          ball.ballX + ball.radius > brick.x && ball.ballX < brick.x + canvas.width/pieces &&
+          ball.ballY + ball.radius > brick.y && ball.ballY < brick.y + canvas.height/pieces
+          ) {
+          if (brick.color == 'coral' && ball.color == 'coral') {
+            ball.ballSpeedY = -ball.ballSpeedY;
+            ball.ballSpeedX = -ball.ballSpeedX;
+            brick.color = 'black';
+          }
+          if (brick.color == 'black' && ball.color == 'black') {
+            ball.ballSpeedY = -ball.ballSpeedY;
+            ball.ballSpeedX = -ball.ballSpeedX;
+            brick.color = 'coral';
+          }
+        }
+      }
+    }
+  }
+
+  function moveBall(ball) {
+    ball.ballX = ball.ballX + ball.ballSpeedX;
+    ball.ballY = ball.ballY + ball.ballSpeedY;
+    if (ball.ballX < 0){
+      ball.ballSpeedX = -ball.ballSpeedX;
+    }
+    if (ball.ballX > canvas.width) {
+      ball.ballSpeedX = -ball.ballSpeedX;
+    }
+    if (ball.ballY < 0) {
+      ball.ballSpeedY = -ball.ballSpeedY;
+    }
+    if (ball.ballY > canvas.height) {
+      ball.ballSpeedY = -ball.ballSpeedY;
+    }
+  }
+
+  function drawEverything() {
+    drawBricks();
+    drawBall(left_ball.ballX, left_ball.ballY, left_ball.radius, left_ball.color);
+    drawBall(right_ball.ballX, right_ball.ballY, right_ball.radius, right_ball.color);
+    collisionDetection(left_ball);
+    collisionDetection(right_ball);
+  }
+
+  function drawBricks() {
+    for (var i = 0; i < pieces; i++) {
+      for (var j = 0; j < pieces; j++) {
+        var brickX = (i * (canvas.width/pieces)) ;
+        var brickY = (j * (canvas.height/pieces)) ;
+        bricks[i][j].x = brickX;
+        bricks[i][j].y = brickY;
+        drawRect(brickX, brickY, canvas.width/pieces, canvas.height/pieces, bricks[i][j].color)
+      }
+    }
+  }
+
+  function drawBall(centerX, centerY, radius, drawColor) {
+    canvasContext.fillStyle = drawColor;
+    canvasContext.beginPath();
+    canvasContext.arc(centerX, centerY, radius, 0, Math.PI * 2, true);
+    canvasContext.fill();
+    canvasContext.closePath();
+  }
+
+  function drawRect(leftX, topY, width, height, drawColor) {
+    canvasContext.fillStyle = drawColor;
+    canvasContext.fillRect(leftX, topY, width, height);
+  }
+}
+
+window.onload = function () {
+  canvas = document.getElementById('gameCanvas');
+  pong = new PongGame(canvas);
+}
+</script>
