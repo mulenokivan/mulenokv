@@ -11,15 +11,16 @@
     </div>
   <% end %>
 
-  <div>
+<div class="form">
+  <div class='form_elem'>
     <%= form.input :title %>
   </div>
 
-  <div>
+  <div class='form_elem'>
     <%= form.input :description %>
   </div>
 
-  <div>
+  <div class='form_elem'>
     <%= form.input :published %>
   </div>
 
@@ -30,4 +31,5 @@
   <div>
     <%= form.button :submit, class: 'button' %>
   </div>
+</div>
 <% end %>
