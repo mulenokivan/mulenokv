@@ -15,13 +15,17 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "friendly_id"
 gem "simple_form"
+gem 'annotate'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
 
 group :development do
-  gem 'annotate'
+  gem 'capistrano', '~> 3.11'
+  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rvm'
   gem "web-console"
 end
 
