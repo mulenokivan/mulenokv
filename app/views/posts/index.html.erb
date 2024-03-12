@@ -1,17 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Posts</h1>
-
-<ul class="list" id="posts">
-  <% @posts.each do |post| %>
-    <li class="list__item">
-      <%= render post %>
-      <p>
-        <%= link_to "Show this post", post %>
-      </p>
-      <hr>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to "New post", new_post_path %>
+<div class="post">
+  <div class="post__header">
+    <h2>
+      Posts
+    </h2>
+    <%= link_to "New post", new_post_path, class: 'btn' %>
+  </div>
+  <ul class="list" id="posts">
+    <% @posts.each do |post| %>
+      <li class="list__item">
+        <%= link_to edit_post_path(post) do %>
+          <%= render post %>
+				<% end %>
+        <hr>
+      </li>
+    <% end %>
+	</ul>
+</div>
