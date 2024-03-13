@@ -3,8 +3,8 @@
   color-scheme: var(--color-scheme)
 
 body
-  background-color: var(--body-color)
   font-family: 'SpaceMono', sans-serif
+  background-color: var(--body-color)
   font-weight: 400
   min-height: calc(100vh - 16px)
   display: flex
@@ -27,6 +27,7 @@ hr
   border-top: var(--border-style)
 
 input, textarea
+  font-family: 'SpaceMono', sans-serif
   outline: none
   border: none
   border-radius: 5px
@@ -38,6 +39,9 @@ textarea
   min-width: 175px
   min-height: 30px
 
+img
+  max-width: 100%
+  height: auto
 
 .container
   max-width: 1440px
@@ -45,3 +49,6 @@ textarea
   margin-right: auto
   padding-left: 15px
   padding-right: 15px
+
+.js-d-none
+  display: none

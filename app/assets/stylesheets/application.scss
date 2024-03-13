@@ -1,13 +1,6 @@
-// Sassy
-@use 'variables';
-@use 'mixins';
-@use 'base';
-@use 'post';
-@use 'list';
-@use 'nav';
-@use 'header';
-@use 'link';
-@use 'footer';
-@use 'btn';
-@use 'form';
-@use 'form_elem';
+@import 'base/__application';
+@import 'components/__application';
+@import 'vendors/__application';
+@import 'vendors-redefine/__application';
+
+@import 'trix';

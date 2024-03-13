@@ -1,4 +1,23 @@
-<%= link_to "Back to posts", posts_path, class: 'btn' %>
-<h1>Editing post</h1>
-<%= render "form", post: @post %>
-<br>
+<div>
+  <%= link_to "Back to posts", posts_path, class: 'btn' %>
+  <h1>Editing post</h1>
+  <%= render "form", post: @post %>
+</div>
+
+<div class="page--big element">
+  <div class="element__header">
+    <%= simple_form_for [@post, @element] do |form| %>
+      <%= form.hidden_field :element_type, value: 'paragraph' %>
+      <%= form.submit 'Paragraph', class: 'btn' %>
+    <% end %>
+    <%= simple_form_for [@post, @element] do |form| %>
+      <%= form.hidden_field :element_type, value: 'image' %>
+      <%= form.submit 'Image', class: 'btn' %>
+    <% end %>
+  </div>
+  <div data-controller="sortable" data-post-id="<%= @post.id %>">
+    <% @post.elements.order(position: :asc).each do |element| %>
+      <%= render element %>
+    <% end %>
+  </div>
+</div>

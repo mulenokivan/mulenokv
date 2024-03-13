@@ -21,6 +21,13 @@
   </div>
 
   <div class='form_elem'>
+    <%= form.file_field :header_image %>
+    <% if post.header_image.present? %>
+      <%= image_tag post.header_image %>
+    <% end %>
+  </div>
+
+  <div class='form_elem'>
     <%= form.input :published %>
   </div>
 

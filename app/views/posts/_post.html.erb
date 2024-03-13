@@ -15,4 +15,8 @@
     <strong>Published at:</strong>
     <%= post.published_at %>
   </p>
+  <% if post.header_image.present? %>
+    <div class="post__image" style="background-image: url(<%= url_for(post.header_image) %>);">
+    </div>
+  <% end %>
 </div>

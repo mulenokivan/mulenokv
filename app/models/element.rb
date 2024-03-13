@@ -1,5 +1,15 @@
 class Element < ApplicationRecord
+  AVAILABLE_TYPES = ['paragraph', 'image', 'video-embed']
   belongs_to :post
+  validates :element_type, inclusion: { in: AVAILABLE_TYPES }
+  has_rich_text :content
+  has_one_attached :image
+
+  AVAILABLE_TYPES.each do |type|
+    define_method("#{type}?") do
+      element_type == type
+    end
+  end
 end
 
 # == Schema Information
@@ -7,7 +17,6 @@ end
 # Table name: elements
 #
 #  id           :bigint           not null, primary key
-#  content      :text
 #  element_type :string
 #  position     :integer
 #  created_at   :datetime         not null

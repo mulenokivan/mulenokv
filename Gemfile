@@ -16,6 +16,7 @@ gem "image_processing", "~> 1.2"
 gem "friendly_id"
 gem "simple_form"
 gem 'annotate'
+gem 'requestjs-rails'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]

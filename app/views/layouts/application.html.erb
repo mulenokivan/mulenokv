@@ -12,7 +12,8 @@
 
   <body class="bg-grey container theme--<%= cookies[:theme].present? ? cookies[:theme] : 'light' %>">
     <%= render 'common/header' %>
-    <main>
+    <p style="color: green"><%= notice %></p>
+    <main class="page">
       <%= yield %>
     </main>
     <%= render 'common/footer' %>
