@@ -10,7 +10,21 @@
     </ul>
   </nav>
   <div>
-    <%= link_to 'dark', set_theme_path(theme: 'dark'), class: cookies[:theme] == 'dark' ? 'link link--active' : '' %>
-    <%= link_to 'light', set_theme_path(theme: 'light'), class: cookies[:theme] == 'light' ? 'link link--active' : '' %>
+    <span
+      data-controller="theme"
+      data-action="click->theme#toggleTheme"
+      data-theme="light"
+      class="link <%= cookies[:theme] == 'theme' ? 'link--active' : '' %>"
+    >
+      light
+    </span>
+    <span
+      data-controller="theme"
+      data-action="click->theme#toggleTheme"
+      data-theme="dark"
+      class="link <%= cookies[:theme] == 'dark' ? 'link--active' : '' %>"
+    >
+      dark
+    </span>
   </div>
 </header>
